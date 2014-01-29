@@ -1,5 +1,5 @@
 var serverUrl = "/";
-var localStream, room, recording;
+var localStream, room;
 
 function getParameterByName(name) {
   name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
@@ -8,26 +8,27 @@ function getParameterByName(name) {
   return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-function startRecording (){
-  if (room!=undefined){
-    if (!recording){
-      room.startRecording(localStream);
-      recording = true;
-    }else{
-      room.stopRecording(localStream);
-      recording = false;
+function startStream() {
+    document.getElementById("btnStart").disabled = 'disabled';
+    
+    var options = { 
+        videoSize: [1280, 720, 1280, 720],
+        attributes: { name: getParameterByName("name"); }
+    };
+    
+    if (document.getElementById("stVideo").checked) {
+        options.video = true;
+        options.screen = false;
+        options.audio = false;
+    } else if (document.getElementById("stScreen").checked) {
+    
+    } else if (document.getElementById("stAudio").checked) {
+    
     }
-  }
-}
-
-window.onload = function () {
-  recording = false;
-  var screen = getParameterByName("screen");
-
-  //localStream = Erizo.Stream({audio: true, video: true, data: false, videoSize: [1280, 720, 1280, 720], attributes: { name: 'Audience Cam' }});
-  localStream = Erizo.Stream({screen: true, videoSize: [1280, 720, 1280, 720]});
-  
-  var createToken = function(userName, role, callback) {
+    
+    localStream = Erizo.Stream(options);
+    
+    var createToken = function(userName, role, callback) {
 
     var req = new XMLHttpRequest();
     var url = serverUrl + 'Token/' + userName + '/' + role;
@@ -97,4 +98,4 @@ window.onload = function () {
     });
     localStream.init();
   });
-};
+}

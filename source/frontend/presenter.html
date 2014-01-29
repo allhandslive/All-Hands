@@ -1,14 +1,23 @@
 <html>
   <head>
-    <title>Screen Sharer</title>
+    <title>Presenter</title>
     <script type="text/javascript" src="scripts/vendor/erizo.js"></script>
     <script type="text/javascript" src="scripts/presenter.js"></script>
   </head>
 
   <body>
+    <input type="radio" id="stVideo" name="streamType" value="video">
+    <label for="stVideo">Video</label>
+    <br />
+    
+    <input type="radio" id="stScreen" name="streamType" value="screen">
+    <label for="stScreen">Screen</label>
+    <br />
+    
+    <input type="radio" id="stAudio" name="streamType" value="audio">
+    <label for="stAudio">Audio</label>
+    <br />
 
-    <button id="recordButton" onclick="startRecording()">Toggle Recording</button>
-    <div id="myVideo" style="width:320px; height: 240px;"></div>
-
+    <button id="btnStart" onclick="startStream()">Start</button>
   </body>
 </html>
