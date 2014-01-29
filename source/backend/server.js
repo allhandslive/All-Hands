@@ -56,25 +56,25 @@ N.API.getRooms(function (roomlist) {
     }
 });
 
-app.post('/createToken/', function (req, res) {
+app.get('/Token/:username/:role', function (req, res) {
     "use strict";
     var room = myRoom,
-        username = req.body.username,
-        role = req.body.role;
+        username = req.params.username,
+        role = req.params.role;
     N.API.createToken(room, username, role, function (token) {
         console.log(token);
         res.send(token);
     });
 });
 
-app.get('/getRooms/', function (req, res) {
+app.get('/Rooms', function (req, res) {
     "use strict";
     N.API.getRooms(function (rooms) {
         res.send(rooms);
     });
 });
 
-app.get('/getUsers/:room', function (req, res) {
+app.get('/Rooms/:room/Users', function (req, res) {
     "use strict";
     var room = req.params.room;
     N.API.getUsers(room, function (users) {

@@ -30,8 +30,7 @@ window.onload = function () {
   var createToken = function(userName, role, callback) {
 
     var req = new XMLHttpRequest();
-    var url = serverUrl + 'createToken/';
-    var body = {username: userName, role: role};
+    var url = serverUrl + 'Token/' + userName + '/' + role;
 
     req.onreadystatechange = function () {
       if (req.readyState === 4) {
@@ -39,9 +38,9 @@ window.onload = function () {
       }
     };
 
-    req.open('POST', url, true);
+    req.open('GET', url, true);
     req.setRequestHeader('Content-Type', 'application/json');
-    req.send(JSON.stringify(body));
+    req.send();
   };
 
   createToken("user", "presenter", function (response) {

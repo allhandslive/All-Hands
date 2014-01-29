@@ -122,8 +122,7 @@ presentation.controller('MainController', function($scope, $sceDelegate, $sce) {
     
     function getUserToken(username) {
         var req = new XMLHttpRequest();
-        var url = serverUrl + 'createToken/';
-        var body = { username: username, role: 'viewer' };
+        var url = serverUrl + 'Token/' + username + '/viewer';
         
         req.onreadystatechange = function () {
             if (req.readyState === 4) {
@@ -131,9 +130,9 @@ presentation.controller('MainController', function($scope, $sceDelegate, $sce) {
             }
         };
         
-        req.open('POST', url, true);
+        req.open('GET', url, true);
         req.setRequestHeader('Content-Type', 'application/json');
-        req.send(JSON.stringify(body));
+        req.send();
     }
     
     function addMessage(message, stream) {
