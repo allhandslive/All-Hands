@@ -3,8 +3,7 @@ var express = require('express'),
     net = require('net'),
     N = require('./nuve'),
     fs = require("fs"),
-    https = require("https"),
-    config = require('./config');
+    https = require("https");
 
 var options = {
     key: fs.readFileSync('cert/key.pem').toString(),
@@ -38,7 +37,7 @@ app.use(function (req, res, next) {
     }
 });
 
-N.API.init(config.nuve.superserviceID, config.nuve.superserviceKey, 'http://localhost:3000/');
+N.API.init('52e857e67bfad5c475648887', '9256', 'http://localhost:3000/');
 
 var myRoom;
 
