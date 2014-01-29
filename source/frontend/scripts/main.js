@@ -31,7 +31,7 @@ presentation.directive('nePlay', function() {
 });
 
 presentation.controller('MainController', function($scope, $sceDelegate, $sce) {
-    var serverUrl = 'http://allhands.nweserver.com:3001/';
+    var serverUrl = 'https://allhands.nweserver.com:3004/';
     var room;
     var dataStream;
     

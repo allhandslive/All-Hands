@@ -82,7 +82,5 @@ app.get('/getUsers/:room', function (req, res) {
     });
 });
 
-app.listen(3001);
-
 var server = https.createServer(options, app);
-server.listen(3004);
+server.listen(443);
