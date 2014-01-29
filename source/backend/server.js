@@ -4,7 +4,7 @@ var express = require('express'),
     N = require('./nuve'),
     fs = require("fs"),
     https = require("https"),
-    config = require('./../../licode_config');
+    config = require('./config');
 
 var options = {
     key: fs.readFileSync('cert/key.pem').toString(),
@@ -19,7 +19,7 @@ app.configure(function () {
     "use strict";
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
     app.use(express.logger());
-    app.use(express.static(__dirname + '/public'));
+    app.use(express.static(__dirname + '../frontend'));
     //app.set('views', __dirname + '/../views/');
     //disable layout
     //app.set("view options", {layout: false});

@@ -1,4 +1,4 @@
-var serverUrl = "http://192.168.1.64:3001/";
+var serverUrl = "http://allhands.nweserver.com:3001/";
 var localStream, room, recording;
 
 function getParameterByName(name) {
@@ -24,8 +24,8 @@ window.onload = function () {
   recording = false;
   var screen = getParameterByName("screen");
 
-  localStream = Erizo.Stream({audio: true, video: true, data: false, videoSize: [1280, 720, 1280, 720], attributes: { name: 'Audience Cam' }});
-  //localStream = Erizo.Stream({screen: true, videoSize: [1280, 720, 1280, 720]});
+  //localStream = Erizo.Stream({audio: true, video: true, data: false, videoSize: [1280, 720, 1280, 720], attributes: { name: 'Audience Cam' }});
+  localStream = Erizo.Stream({screen: true, videoSize: [1280, 720, 1280, 720]});
   
   var createToken = function(userName, role, callback) {
 
