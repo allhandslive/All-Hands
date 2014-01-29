@@ -1,4 +1,4 @@
-var serverUrl = "https://allhands.nweserver.com/";
+var serverUrl = "/";
 var localStream, room, recording;
 
 function getParameterByName(name) {
