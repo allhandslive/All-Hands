@@ -19,7 +19,7 @@ app.configure(function () {
     "use strict";
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
     app.use(express.logger());
-    app.use(express.static(__dirname + '../frontend'));
+    app.use(express.static(__dirname + '/../frontend'));
     //app.set('views', __dirname + '/../views/');
     //disable layout
     //app.set("view options", {layout: false});
