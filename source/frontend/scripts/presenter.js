@@ -13,7 +13,7 @@ function startStream() {
     
     var options = { 
         videoSize: [1280, 720, 1280, 720],
-        attributes: { name: getParameterByName("name"); }
+        attributes: { name: getParameterByName("name") }
     };
     
     if (document.getElementById("stVideo").checked) {
