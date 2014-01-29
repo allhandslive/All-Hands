@@ -1,0 +1,257 @@
+<html ng-app="Presentation">
+    <head>
+        <title>Presentation</title>
+        <script type="text/javascript" src="scripts/erizo.js"></script>
+        <script type="text/javascript" src="scripts/angular.min.js"></script>
+        <script type="text/javascript" src="scripts/underscore.min.js"></script>
+        <script type="text/javascript" src="scripts/main.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300" rel="stylesheet" type="text/css">
+        
+        <style>
+            body, html {
+                background-color: #f1f1f1;
+                font-family: 'RobotoLight', Arial, sans-serif;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                margin: 0;
+                padding: 0;
+            }
+            
+            a {
+                text-decoration: none;
+                color: white;
+            }
+            
+            a:hover {
+                color: #0081C9;
+            }
+            
+            #LeftPanel {
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                right: 300;
+                left: 0;
+            }
+            
+            #LeftPanel .top-menu {
+                height: 80px;
+                background-color: #efefef;
+                border-bottom: 1px solid rgba(0,0,0,0.5);
+                box-shadow: 0 0 11px rgba(0,0,0,0.5);
+                padding: 10px;
+            }
+            
+            #LeftPanel .top-menu .information {
+                float: left;
+                margin-left: 5px;
+            }
+            
+            #LeftPanel .top-menu .title {
+                font-size: 26px;
+            }
+            
+            #RightPanel {
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                right: 0;
+                width: 300px;
+                background-color: #555;
+                color: #efefef;
+                box-shadow: 0 0 11px rgba(0,0,0,0.5);
+            }
+            
+            #RightPanel .current-message {
+                position: absolute;
+                bottom: 10px;
+                left: 10px;
+                right: 10px;
+                height: 30px;
+            }
+            
+            #RightPanel .current-message input {
+                background: #333;
+                box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,0.2);
+                border-radius: 5px;
+                border: none;
+                color: #eee;
+                text-shadow: black 0 0 5px;
+                padding: 10px;
+                -webkit-box-sizing: border-box;
+                outline: none;
+                width: 100%;
+                height: 100%;
+            }
+            
+            #RightPanel ul {
+                list-style: none;
+                margin: 0;
+                padding: 10px;
+                overflow-y: scroll;
+            }
+            
+            #RightPanel ul li {
+                margin-bottom: 3px;
+            }
+            
+            #RightPanel ul li a {
+                display: block;
+            }
+            
+            #RightPanel ul li img {
+                float: left;
+            }
+            
+            #RightPanel ul.viewers {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 60%;
+                left: 0;
+                border-bottom: 1px solid rgba(0,0,0,0.5);
+                box-shadow: 0 0 11px rgba(0,0,0,0.5);
+            }
+                        
+            #RightPanel ul.messages {
+                position: absolute;
+                top: 40%;
+                right: 0;
+                bottom: 40px;
+                left: 0;
+                font-size: 13px;
+            }
+            
+            #RightPanel ul.viewers li div.username,
+            #RightPanel ul.messages li div.message {
+                width: 240px;
+                margin-top: 7px;
+                margin-left: 4px;
+                float: left;
+            }
+            
+            .clearfix {
+                clear: both;
+            }
+            
+            .video-container {
+                position: fixed;
+                top: 110px;
+                right: 310px;
+                left: 10px;
+                bottom: 10px;
+                text-align: center;
+            }
+            
+            #screen {
+                border: 1px solid black;
+                box-shadow: 0 0 11px rgba(0,0,0,0.5);
+                display: inline-block;
+                max-width: 100%;
+                max-height: 100%;
+            }
+            
+            .video-container .no-feeds {
+                font-size: 20px;
+                padding-top: 100px;
+                color: #333;
+            }
+            
+            .thumbnail-container {
+                float: right;
+            }
+            
+            .thumbnail-container .thumbnail {
+                position: relative;
+                display: inline-block;
+                height: 100%;
+                border: 1px solid black;
+                box-shadow: 0 0 11px rgba(0,0,0,0.5);
+                text-align: center;
+                margin-left: 5px;
+            }
+            
+            .thumbnail-container .thumbnail:hover div.name {
+                visibility: visible;
+            }
+            
+            .thumbnail-container .thumbnail div.name {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                text-align: center;
+                padding-top: 30px;
+                visibility: hidden;
+            }
+            
+            .thumbnail-container .thumbnail div.name span {
+                font-size: 14px;
+                background-color: #333;
+                border-radius: 15px;
+                padding: 2px 10px;
+                color: white;
+            }
+            
+            .thumbnail-container .thumbnail video {
+                max-height: 100%;
+            }
+            
+            .thumbnail-container .thumbnail .selected {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                height: 4px;
+                background-color: #0081C9;
+            }
+        </style>
+    </head>
+    <body>
+        <div ng-controller="MainController">
+            <div id="LeftPanel">
+                <div class="top-menu">
+                    <div class="information">
+                        <div class="title">PowerDMS Development Tech Review</div>
+                        <div id="clock">{{time}}</div>
+                    </div>
+                    <div class="thumbnail-container">
+                        <a ng-repeat="video in feeds | filter:{hasVideo:true} | orderBy:[videoPredicate, 'name']" href="#" class="thumbnail" ng-click="selectFeed(video.id)">
+                            <div class="name"><span>{{video.name}}</span></div>
+                            <b class="selected" ng-show="selectedVideo.id == video.id"></b>
+                            <video ng-src="{{video.streamUrl}}" autoplay></video>
+                        </a>
+                    </div>
+                </div>
+                <div class="video-container">
+                    <video id="screen" ng-show="selectedVideo" ng-src="{{selectedVideo.streamUrl}}" autoplay muted></video>
+                    <div class="no-feeds" ng-hide="selectedVideo">No video feeds at this time.</div>
+                </div>
+                <audio id="audio" ng-src="{{selectedAudio.streamUrl}}" ne-play="selectedAudio && !selectedAudio.hasVideo"></audio>
+            </div>
+            <div id="RightPanel">
+                <ul class="viewers">
+                    <li ng-repeat="viewer in feeds | filter:{hasData:true} | orderBy:[viewerPredicate, 'name']">
+                        <a href="#">
+                            <img ng-src="{{viewer.photo}}" width="30px" height="30px" />
+                            <div class="username">{{viewer.name}}</div>
+                            <div class="clearfix"></div>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="messages">
+                    <li ne-scroll-bottom ng-repeat="message in messages | orderBy:'timestamp'">
+                        <div class="image"><img ng-src="{{message.photo}}" title="{{message.name}}" width="30px" height="30px" /></div>
+                        <div class="message">{{message.text}}</div>
+                        <div class="clearfix"></div>
+                    </li>
+                </ul>
+                <div class="current-message">
+                    <input type="text" ng-model="currentMessage" ng-keypress="messageKeyPress($event)" />
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
