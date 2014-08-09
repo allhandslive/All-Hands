@@ -5539,8 +5539,6 @@ Erizo.Room = function (spec) {
         var streamList = [],
             token = L.Base64.decodeBase64(spec.token);
 
-            token.secure = true;
-
         if (that.state !== DISCONNECTED) {
             L.Logger.error("Room already connected");
         }
