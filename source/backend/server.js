@@ -7,7 +7,7 @@ var express = require('express'),
 
 var options = {
     key: fs.readFileSync('cert/allhands.key').toString(),
-    cert: fs.readFileSync('cert/allhands.cert').toString()
+    cert: fs.readFileSync('cert/allhands.crt').toString()
 };
 
 var app = express();
