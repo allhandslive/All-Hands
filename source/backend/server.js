@@ -37,7 +37,7 @@ app.use(function (req, res, next) {
     }
 });
 
-N.API.init('52e85c3ca0fedbd195558058', '9397', 'https://localhost:8080/');
+N.API.init('52e85c3ca0fedbd195558058', '9397', 'https://localhost:3000/');
 
 var myRoom;
 
