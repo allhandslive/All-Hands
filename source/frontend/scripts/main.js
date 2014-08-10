@@ -248,6 +248,10 @@ presentation.controller('MainController', function($scope, $sceDelegate, $sce) {
         var attributes = {
             name: getParameterByName('name')
         };
+
+        while (attributes.name == null) {
+            var attributes.name = prompt('Please enter your full name');
+        }
         
         dataStream = Erizo.Stream({ audio: false, video: false, screen: false, data: true, attributes: attributes });
         
@@ -275,7 +279,7 @@ presentation.controller('MainController', function($scope, $sceDelegate, $sce) {
         name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
         results = regex.exec(location.search);
-        return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        return results == null ? null : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
     
     window.onload = init;
