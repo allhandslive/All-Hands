@@ -250,7 +250,7 @@ presentation.controller('MainController', function($scope, $sceDelegate, $sce) {
         };
 
         while (attributes.name == null) {
-            var attributes.name = prompt('Please enter your full name');
+            attributes.name = prompt('Please enter your full name');
         }
         
         dataStream = Erizo.Stream({ audio: false, video: false, screen: false, data: true, attributes: attributes });
