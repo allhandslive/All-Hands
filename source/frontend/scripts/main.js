@@ -249,7 +249,7 @@ presentation.controller('MainController', function($scope, $sceDelegate, $sce) {
             name: getParameterByName('name')
         };
 
-        while (attributes.name == null) {
+        while (attributes.name === '') {
             attributes.name = prompt('Please enter your full name');
         }
         
@@ -279,7 +279,7 @@ presentation.controller('MainController', function($scope, $sceDelegate, $sce) {
         name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
         results = regex.exec(location.search);
-        return results == null ? null : decodeURIComponent(results[1].replace(/\+/g, " "));
+        return results == null ? '' : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
     
     window.onload = init;
