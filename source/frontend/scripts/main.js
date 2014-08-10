@@ -141,7 +141,6 @@ presentation.controller('MainController', function($scope, $sceDelegate, $sce) {
         if (stream) {
             var attributes = stream.getAttributes() || { };
             message.name = attributes.name;
-            message.photo = attributes.photo;
         }
         
         $scope.$safeApply(function() {
@@ -172,8 +171,6 @@ presentation.controller('MainController', function($scope, $sceDelegate, $sce) {
         }
         
         if (feed.hasData) {  
-            feed.photo = attributes.photo;
-                  
             stream.addEventListener('stream-data', function(evt) {
                 addMessage(evt.msg, stream);
             });
@@ -246,8 +243,7 @@ presentation.controller('MainController', function($scope, $sceDelegate, $sce) {
     
     function initDataStream() {
         var attributes = {
-            name: getParameterByName('name'),
-            photo: 'https://avatarly.herokuapp.com/avatar?background_color=%2328b0e6&size=30&text=' + name
+            name: getParameterByName('name')
         };
         
         dataStream = Erizo.Stream({ audio: false, video: false, screen: false, data: true, attributes: attributes });

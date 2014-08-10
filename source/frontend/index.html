@@ -234,7 +234,7 @@
                 <ul class="viewers">
                     <li ng-repeat="viewer in feeds | filter:{hasData:true} | orderBy:[viewerPredicate, 'name']">
                         <a href="#">
-                            <img ng-src="{{viewer.photo}}" width="30px" height="30px" />
+                            <img ng-src="https://avatarly.herokuapp.com/avatar?background_color=%2328b0e6&size=30&text={{viewer.name}}" width="30px" height="30px" />
                             <div class="username">{{viewer.name}}</div>
                             <div class="clearfix"></div>
                         </a>
