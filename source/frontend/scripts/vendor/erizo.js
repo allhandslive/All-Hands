@@ -5116,6 +5116,19 @@ Erizo.GetUserMedia = function (config, callback, error) {
         navigator.getMedia(config, callback, error);
     }
 };
+
+
+Erizo.GetUserMedia = function(b,a,c) {
+	navigator.getMedia=navigator.getUserMedia||navigator.webkitGetUserMedia||navigator.mozGetUserMedia||navigator.msGetUserMedia;
+
+	if(b.screen)
+		if(L.Logger.debug("Screen access requested"),34<=!window.navigator.appVersion.match(/Chrome\/([\w\W]*?)\./)[1])c({code:"This browser does not support screen sharing"});else{var e="okeephmleflklcdebijnponpabbmmgeo";b.extensionId&&(L.Logger.debug("extensionId supplied, using "+b.extensionId),e=b.extensionId);L.Logger.debug("Screen access on chrome stable, looking for extension");
+try{chrome.runtime.sendMessage(e,{getStream:!0},function(d){if(d==void 0){L.Logger.debug("Access to screen denied");c({code:"Access to screen denied"})}else{b={video:{mandatory:{chromeMediaSource:"desktop",chromeMediaSourceId:d.streamId}}};navigator.getMedia(b,a,c)}})}catch(d){L.Logger.debug("Lynckia screensharing plugin is not accessible "),c({code:"no_plugin_present"})}}else"undefined"!==typeof module&&module.exports?L.Logger.error("Video/audio streams not supported in erizofc yet"):navigator.getMedia(b,
+a,c)
+};
+
+
+
 /*global ErizoGetUserMedia, L, document*/
 /*
  * Class Stream represents a local or a remote Stream in the Room. It will handle the WebRTC stream
