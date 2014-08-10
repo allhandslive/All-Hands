@@ -5105,7 +5105,7 @@ Erizo.Connection = function (spec) {
 Erizo.GetUserMedia = function (config, callback, error) {
     "use strict";
 
-    getScreenId(function (error, sourceId, screen_constraints) {
+    getScreenId(function (e, sourceId, screen_constraints) {
 	    // error    == null || 'permission-denied' || 'not-installed' || 'installed-disabled' || 'not-chrome'
 	    // sourceId == null || 'string' || 'firefox'
 
