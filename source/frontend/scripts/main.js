@@ -247,7 +247,7 @@ presentation.controller('MainController', function($scope, $sceDelegate, $sce) {
     function initDataStream() {
         var attributes = {
             name: getParameterByName('name'),
-            photo: getParameterByName('photo')
+            photo: 'https://avatarly.herokuapp.com/avatar?background_color=%2328b0e6&size=30&text=' + name
         };
         
         dataStream = Erizo.Stream({ audio: false, video: false, screen: false, data: true, attributes: attributes });
