@@ -32,6 +32,7 @@ presentation.directive('nePlay', function() {
 
 presentation.controller('MainController', function($scope, $sceDelegate, $sce) {
     var serverUrl = 'https://allhands.nweserver.com/';
+    var avatarBaseUrl = 'https://avatarly.herokuapp.com/avatar?background_color=%2328b0e6&size=30&text=';
     var room;
     var dataStream;
     
@@ -141,6 +142,7 @@ presentation.controller('MainController', function($scope, $sceDelegate, $sce) {
         if (stream) {
             var attributes = stream.getAttributes() || { };
             message.name = attributes.name;
+            message.photo = avatarBaseUrl + attributes.name;
         }
         
         $scope.$safeApply(function() {
@@ -154,7 +156,7 @@ presentation.controller('MainController', function($scope, $sceDelegate, $sce) {
         var feed = {
             id: stream.getID(),
             name: stream.local ? 'You' : attributes.name,
-            photo: 'https://avatarly.herokuapp.com/avatar?background_color=%2328b0e6&size=30&text=' + attributes.name,
+            photo: avatarBaseUrl + attributes.name,
             hasScreen: stream.hasScreen(),
             hasVideo: stream.hasVideo() || stream.hasScreen(),
             hasAudio: stream.hasAudio(),
