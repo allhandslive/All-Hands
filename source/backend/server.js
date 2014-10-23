@@ -1,5 +1,8 @@
 /*global require, __dirname, console*/
 var express = require('express'),
+    bodyParser = require('body-parser'),
+    errorhandler = require('errorhandler'),
+    morgan = require('morgan'),
     net = require('net'),
     N = require('./nuve'),
     fs = require("fs"),
@@ -12,17 +15,19 @@ var options = {
 
 var app = express();
 
-app.use(express.bodyParser());
+// app.configure ya no existe
+"use strict";
+app.use(errorhandler({
+    dumpExceptions: true,
+    showStack: true
+}));
+app.use(morgan('dev'));
+app.use(express.static(__dirname + '/../frontend'));
 
-app.configure(function () {
-    "use strict";
-    app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-    app.use(express.logger());
-    app.use(express.static(__dirname + '/../frontend'));
-    //app.set('views', __dirname + '/../views/');
-    //disable layout
-    //app.set("view options", {layout: false});
-});
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 app.use(function (req, res, next) {
     "use strict";
