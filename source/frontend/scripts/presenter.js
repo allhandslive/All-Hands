@@ -25,7 +25,7 @@ function startStream() {
         options.video = false;
         options.screen = true;
         options.audio = false;
-        options.videoSize = [screen.width, screen.height, screen.width, screen.height];
+        options.videoSize = [1920, 1080, 1920, 1080];
     } else if (document.getElementById("stAudio").checked) {
         options.video = false;
         options.screen = false;
