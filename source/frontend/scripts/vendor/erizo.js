@@ -2341,7 +2341,7 @@ Erizo.Stream = function(b) {
         try {
             if ((b.audio || b.video || b.screen) && void 0 === b.url) {
                 L.Logger.debug("Requested access to local media");
-                var c = b.video;
+                var c = b.video || b.screen;
                 !0 == c && void 0 !== a.videoSize && (c = {
                     mandatory: {
                         minWidth: a.videoSize[0],
