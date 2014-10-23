@@ -31,7 +31,7 @@ presentation.directive('nePlay', function() {
 });
 
 presentation.controller('MainController', function($scope, $sceDelegate, $sce) {
-    var serverUrl = 'https://allhands.nweserver.com/';
+    var serverUrl = 'https://allhands.nweserver.com:3004/';
     var avatarBaseUrl = 'https://avatarly.herokuapp.com/avatar?background_color=%2328b0e6&size=30&text=';
     var room;
     var dataStream;
