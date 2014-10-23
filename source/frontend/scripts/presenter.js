@@ -12,7 +12,6 @@ function startStream() {
     document.getElementById("btnStart").disabled = 'disabled';
 
     var options = {
-        videoSize: [1280, 720, 1280, 720],
         attributes: { name: getParameterByName("name") },
         extensionId: 'jihbmkjdmomhcpdopcbhdgbficoiiplp'
     };
