@@ -42,7 +42,7 @@ app.use(function (req, res, next) {
     }
 });
 
-N.API.init('52e857e67bfad5c475648887', '9256', 'http://localhost:8080/');
+N.API.init('52e857e67bfad5c475648887', '9256', 'http://localhost:3000/');
 
 var myRoom;
 
