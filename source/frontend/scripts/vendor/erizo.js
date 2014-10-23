@@ -2350,20 +2350,11 @@ Erizo.Stream = function(b) {
                         maxHeight: a.videoSize[3]
                     }
                 });
-                var cs = b.screen;
-                !0 == cs && void 0 !== a.videoSize && (cs = {
-                    mandatory: {
-                        minWidth: a.videoSize[0],
-                        minHeight: a.videoSize[1],
-                        maxWidth: a.videoSize[2],
-                        maxHeight: a.videoSize[3]
-                    }
-                });
                 var d = {
                     video: c,
                     audio: b.audio,
                     fake: b.fake,
-                    screen: cs,
+                    screen: b.screen,
                     extensionId: a.extensionId
                 };
                 L.Logger.debug(d);

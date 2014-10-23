@@ -12,6 +12,7 @@ function startStream() {
     document.getElementById("btnStart").disabled = 'disabled';
 
     var options = {
+        videoSize: [1280, 720, 1280, 720],
         attributes: { name: getParameterByName("name") },
         extensionId: 'jihbmkjdmomhcpdopcbhdgbficoiiplp'
     };
@@ -20,12 +21,10 @@ function startStream() {
         options.video = true;
         options.screen = false;
         options.audio = false;
-        options.videoSize = [1280, 720, 1920, 1080];
     } else if (document.getElementById("stScreen").checked) {
         options.video = false;
         options.screen = true;
         options.audio = false;
-        options.videoSize = [1280, 720, 1920, 1080];
     } else if (document.getElementById("stAudio").checked) {
         options.video = false;
         options.screen = false;
