@@ -2341,7 +2341,7 @@ Erizo.Stream = function(b) {
         try {
             if ((b.audio || b.video || b.screen) && void 0 === b.url) {
                 L.Logger.debug("Requested access to local media");
-                var c = b.video || b.screen;
+                var c = b.video;
                 !0 == c && void 0 !== a.videoSize && (c = {
                     mandatory: {
                         minWidth: a.videoSize[0],
@@ -2350,11 +2350,20 @@ Erizo.Stream = function(b) {
                         maxHeight: a.videoSize[3]
                     }
                 });
+                var cs = b.screen;
+                !0 == cs && void 0 !== a.videoSize && (cs = {
+                    mandatory: {
+                        minWidth: a.videoSize[0],
+                        minHeight: a.videoSize[1],
+                        maxWidth: a.videoSize[2],
+                        maxHeight: a.videoSize[3]
+                    }
+                });
                 var d = {
-                    video: b.video,
+                    video: c,
                     audio: b.audio,
                     fake: b.fake,
-                    screen: b.screen,
+                    screen: cs,
                     extensionId: a.extensionId
                 };
                 L.Logger.debug(d);
