@@ -2351,7 +2351,7 @@ Erizo.Stream = function(b) {
                     }
                 });
                 var d = {
-                    video: c,
+                    video: b.video,
                     audio: b.audio,
                     fake: b.fake,
                     screen: b.screen,
