@@ -6,7 +6,7 @@ var express = require('express'),
     net = require('net'),
     N = require('./nuve'),
     fs = require("fs"),
-    https = require("https");
+    http = require("http");
 
 var options = {
     key: fs.readFileSync('cert/allhands.key').toString(),
@@ -88,4 +88,4 @@ app.get('/Rooms/:room/Users', function (req, res) {
 });
 
 var server = https.createServer(options, app);
-server.listen(443);
+server.listen(80);
