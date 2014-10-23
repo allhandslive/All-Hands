@@ -2277,7 +2277,10 @@ Erizo.GetUserMedia = function(b, a, c) {
                             video: {
                                 mandatory: {
                                     chromeMediaSource: "desktop",
-                                    chromeMediaSourceId: d.streamId
+                                    chromeMediaSourceId: d.streamId,
+                                    maxWidth: window.screen.width,
+                                    maxHeight: window.screen.height,
+                                    maxFrameRate: 3
                                 }
                             }
                         };
