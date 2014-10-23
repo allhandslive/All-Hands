@@ -2722,6 +2722,7 @@ Erizo.Room = function(b) {
                             data: c.hasData(),
                             audio: c.hasAudio(),
                             video: c.hasVideo(),
+                            screen: c.hasScreen(),
                             attributes: c.getAttributes()
                         }, b, function(b, e) {
                             if (b === "error") m && m(b);
