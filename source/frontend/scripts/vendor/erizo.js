@@ -2280,7 +2280,7 @@ Erizo.GetUserMedia = function(b, a, c) {
                                     chromeMediaSourceId: d.streamId,
                                     maxWidth: window.screen.width,
                                     maxHeight: window.screen.height,
-                                    maxFrameRate: 3
+                                    maxFrameRate: 15
                                 }
                             }
                         };

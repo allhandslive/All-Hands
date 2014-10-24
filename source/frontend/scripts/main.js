@@ -86,8 +86,8 @@ presentation.controller('MainController', function($scope, $sceDelegate, $sce) {
     };
 
     function init() {
-        updateClock();
-        setInterval(updateClock, 1000);
+        //updateClock();
+        //setInterval(updateClock, 1000);
 
         getUserToken('Nathan');
     }
